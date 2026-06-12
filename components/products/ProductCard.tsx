@@ -14,14 +14,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <motion.div
-      layout
-      className={`overflow-hidden rounded-lg border bg-canopy/50 transition-all duration-300 hover:scale-[1.02] ${
+      className={`h-fit w-full self-start overflow-hidden rounded-lg border bg-canopy/50 transition-all duration-300 hover:scale-[1.02] ${
         product.isOil
           ? "border-gold/10 hover:border-gold/40"
           : "border-gold/10 hover:border-gold/20"
       }`}
     >
-      <motion.div layout="position" className="p-6">
+      <div className="p-6">
         <span className="inline-block rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-xs font-medium text-gold">
           {product.category}
         </span>
@@ -115,7 +114,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

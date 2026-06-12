@@ -9,7 +9,7 @@ import {
   useInView,
   type MotionValue,
 } from "framer-motion";
-import { ArrowLeft, MapPin } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Service, ServiceStep } from "@/data/services";
 import FloatingLeaves from "@/components/ui/FloatingLeaves";
 import GoldDivider from "@/components/ui/GoldDivider";
@@ -370,6 +370,9 @@ export default function RitualDetail({ service, categoryLabel }: RitualDetailPro
             </div>
             <h1 className="mt-3 max-w-4xl font-serif text-5xl font-light leading-tight text-cream md:text-7xl">
               {service.name}
+              <span className="ml-3 inline-block text-2xl font-light text-gold/75 md:text-3xl">
+                · {stepCount} {stepCount === 1 ? "Step" : "Steps"}
+              </span>
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-cream/60">
               {service.description}
@@ -381,32 +384,6 @@ export default function RitualDetail({ service, categoryLabel }: RitualDetailPro
 
       <section ref={journeyRef} className="relative overflow-hidden py-16 lg:py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 max-w-2xl"
-          >
-            <div className="mb-4 flex items-center gap-2 text-gold">
-              <MapPin size={18} />
-              <span className="text-xs font-semibold uppercase tracking-[0.2em]">
-                Ritual Map
-              </span>
-            </div>
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-gold">
-              {stepCount} Steps
-            </p>
-            <h2 className="mt-2 font-serif text-4xl font-light text-cream">
-              Scroll the path
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-cream/55">
-              Follow the curved golden trail as it winds through each ritual
-              stage. Cards alternate along the path, with each connection
-              finishing inside each step box as you scroll.
-            </p>
-          </motion.div>
-
           <RitualTimeline steps={service.steps} scrollYProgress={scrollYProgress} />
         </div>
       </section>

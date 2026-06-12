@@ -18,7 +18,7 @@ export default function Footer() {
               Fresh Face Herbals
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-cream/60">
-              Salon-exclusive herbals from our own land in Tamil Nadu. Founded
+              Professional-exclusive herbals from our own land in Tamil Nadu. Founded
               by Jawahar — ancestral wisdom, zero synthetics, made for
               professional rituals.
             </p>

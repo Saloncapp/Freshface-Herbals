@@ -53,7 +53,7 @@ export default function ProductsPage() {
           <GoldDivider className="mx-auto mt-8 max-w-xs" />
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-cream/55">
             Herbal shampoos, conditioners, serums, and moisturisers — each
-            formula crafted for salon service and everyday skin and hair health.
+            formula crafted for Professional Use and everyday skin and hair health.
           </p>
 
           <div className="mx-auto mt-10 flex max-w-lg flex-wrap items-center justify-center gap-6">

@@ -64,7 +64,7 @@ export default function FounderStory() {
               </p>
               <p>
                 Fresh Face Herbals was born from that vision: herbals made
-                exclusively for salon service, using only what our own land
+                exclusively for Professional service, using only what our own land
                 provides, following only what our ancestors taught. Not the
                 ordinary path. The ancestral one.
               </p>

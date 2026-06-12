@@ -10,7 +10,7 @@ export default function ServicesPage() {
             Our Rituals
           </p>
           <h1 className="mt-3 font-serif text-5xl font-light text-cream md:text-6xl">
-            Salon Services
+            Professional Services
           </h1>
           <GoldDivider className="mx-auto mt-6 max-w-xs" />
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-cream/50">

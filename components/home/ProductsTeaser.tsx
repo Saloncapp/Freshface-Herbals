@@ -19,7 +19,7 @@ export default function ProductsTeaser() {
           <GoldDivider className="mx-auto mt-6 max-w-xs" />
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-cream/45">
             Shampoos, serums, moisturisers, and lip care — herbal formulations
-            made for professional salon service.
+            made for Professional Services.
           </p>
         </RevealOnScroll>
 

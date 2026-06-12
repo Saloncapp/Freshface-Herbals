@@ -19,18 +19,18 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://freshfaceherbals.com"),
-  title: "Fresh Face Herbals | Salon Herbals from Our Own Land",
+  title: "Fresh Face Herbals | Professional Herbals from Our Own Land",
   description:
-    "Herbals made exclusively for salon service. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land. 100% natural, zero synthetics.",
+    "Herbals made exclusively for Professional Services. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land. 100% natural, zero synthetics.",
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png", sizes: "48x48" }],
     shortcut: "/favicon.png",
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Fresh Face Herbals | Salon Herbals from Our Own Land",
+    title: "Fresh Face Herbals | Professional Herbals from Our Own Land",
     description:
-      "Herbals made exclusively for salon service. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land.",
+      "Herbals made exclusively for Professional Services. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land.",
     url: "https://freshfaceherbals.com",
     siteName: "Fresh Face Herbals",
     images: [{ url: "/freshface-harbals-logo.png", width: 512, height: 512 }],

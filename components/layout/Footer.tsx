@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Camera, MessageCircle, BookOpen } from "lucide-react";
+import { Camera, Video } from "lucide-react";
 
 const serviceLinks = [
   { href: "/services", label: "Facial Treatments" },
@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/freshface_herbals"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-cream/60 transition-colors hover:text-gold"
@@ -60,22 +60,13 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me"
+                  href="https://www.youtube.com/@freshfaceherbals"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-sm text-cream/60 transition-colors hover:text-gold"
                 >
-                  <MessageCircle size={16} />
-                  WhatsApp
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center gap-2 text-sm text-cream/60 transition-colors hover:text-gold"
-                >
-                  <BookOpen size={16} />
-                  Journal
+                  <Video size={16} />
+                  YouTube
                 </a>
               </li>
             </ul>

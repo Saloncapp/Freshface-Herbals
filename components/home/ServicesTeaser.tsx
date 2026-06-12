@@ -9,25 +9,29 @@ const categories = [
   {
     icon: Sparkles,
     title: "Facial",
-    description: "6 salon-grade facial rituals with ancestral botanical formulas",
+    description:
+      "Salon-grade facial rituals with ancestral botanicals from our own land",
     href: "/services",
   },
   {
     icon: Hand,
     title: "Massage",
-    description: "Therapeutic oil massages from flax seed to deep tissue black oil",
+    description:
+      "Therapeutic oil massages crafted for professional salon practice",
     href: "/services",
   },
   {
     icon: Palette,
     title: "Hair Color",
-    description: "100% natural henna and indigo colouring without chemicals",
+    description:
+      "100% natural henna and indigo — no chemicals, only what our soil provides",
     href: "/services",
   },
   {
     icon: Footprints,
     title: "Pedicure",
-    description: "Herbal foot rituals from nourishing soaks to gold treatments",
+    description:
+      "Herbal foot rituals using native ingredients, perfected for salons",
     href: "/services",
   },
 ];
@@ -41,7 +45,7 @@ export default function ServicesTeaser() {
             Our Rituals
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light text-cream md:text-5xl">
-            Salon-Grade Services
+            Rituals Built for Salons
           </h2>
           <GoldDivider className="mx-auto mt-6 max-w-xs" />
         </RevealOnScroll>

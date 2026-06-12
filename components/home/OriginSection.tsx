@@ -2,35 +2,32 @@
 
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import GoldDivider from "@/components/ui/GoldDivider";
+import WaterSplash from "@/components/ui/WaterSplash";
 
-const timeline = [
+const differences = [
   {
-    year: "1952",
-    title: "The First Harvest",
+    title: "Made for Salons, Not Shelves",
     description:
-      "Grandmother Lakshmi begins cultivating medicinal herbs along the Kavery riverbanks in Thanjavur district.",
+      "Most herbal brands sell the same products to everyone. We formulate exclusively for professional salon rituals — facials, massages, hair colour, and pedicures that demand real results.",
   },
   {
-    year: "1978",
-    title: "Salon Heritage",
+    title: "Ancestral Wisdom, Not Shortcuts",
     description:
-      "The family opens their first herbal salon, introducing delta botanicals to professional skincare rituals.",
+      "Others follow the ordinary path — mass-produced blends with generic ingredients. We follow our ancestors. Every formula carries generations of hands-on practice passed down through our land.",
   },
   {
-    year: "2001",
-    title: "Cold Press Revolution",
+    title: "From Our Own Land",
     description:
-      "Second generation pioneers cold-pressed oil extraction, preserving nutrient integrity of every botanical.",
+      "Every botanical we use already grows in our soil — neem, tulsi, hibiscus, henna, and more. We do not import what nature has already placed at our feet. Our land is our laboratory.",
   },
   {
-    year: "Today",
-    title: "Fresh Face Herbals",
+    title: "Nothing Synthetic, Ever",
     description:
-      "Three generations united — 43 botanicals, salon-grade formulations, and a promise of zero synthetics.",
+      "If nature did not make it, we do not use it. No chemicals, no fillers, no artificial fragrances. Pure earth, pure intention — the way our ancestors intended.",
   },
 ];
 
-function KaveryMapSVG() {
+function LandSVG() {
   return (
     <svg viewBox="0 0 400 300" className="h-full w-full" fill="none">
       <rect width="400" height="300" fill="#1a3320" rx="8" />
@@ -50,10 +47,25 @@ function KaveryMapSVG() {
         strokeDasharray="4 4"
       />
       <circle cx="200" cy="120" r="6" fill="#c9a84c" />
-      <text x="200" y="105" textAnchor="middle" fill="#c9a84c" fontSize="10" fontFamily="serif">
-        Kavery Delta
+      <text
+        x="200"
+        y="105"
+        textAnchor="middle"
+        fill="#c9a84c"
+        fontSize="10"
+        fontFamily="serif"
+      >
+        Our Land
       </text>
-      <text x="200" y="250" textAnchor="middle" fill="#f9f4e8" fontSize="12" opacity="0.5" fontFamily="sans-serif">
+      <text
+        x="200"
+        y="250"
+        textAnchor="middle"
+        fill="#f9f4e8"
+        fontSize="12"
+        opacity="0.5"
+        fontFamily="sans-serif"
+      >
         Tamil Nadu, India
       </text>
       {[80, 140, 260, 320].map((x, i) => (
@@ -66,58 +78,51 @@ function KaveryMapSVG() {
           opacity="0.5"
         />
       ))}
-      <text x="60" y="170" fill="#4a7a50" fontSize="9" opacity="0.6">Herb Gardens</text>
-      <text x="280" y="180" fill="#4a7a50" fontSize="9" opacity="0.6">Delta Plains</text>
+      <text x="60" y="170" fill="#4a7a50" fontSize="9" opacity="0.6">
+        Native Herbs
+      </text>
+      <text x="280" y="180" fill="#4a7a50" fontSize="9" opacity="0.6">
+        River Plains
+      </text>
     </svg>
   );
 }
 
 export default function OriginSection() {
   return (
-    <section className="bg-forest py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="difference" className="relative overflow-hidden bg-forest py-24">
+      <WaterSplash variant="accent" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <RevealOnScroll className="mb-16 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-gold">
-            Our Origin
+            Why We Stand Apart
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light text-cream md:text-5xl">
-            Born Along the Kavery
+            Not Just Another Herbal Brand
           </h2>
           <GoldDivider className="mx-auto mt-6 max-w-xs" />
+          <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-cream/50">
+            The market is full of herbal companies — but very few are built for
+            the salon. We are.
+          </p>
         </RevealOnScroll>
 
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <RevealOnScroll direction="left">
             <div className="aspect-[4/3] overflow-hidden rounded-lg border border-gold/10">
-              <KaveryMapSVG />
+              <LandSVG />
             </div>
           </RevealOnScroll>
 
-          <div className="space-y-8">
-            {timeline.map((item, index) => (
-              <RevealOnScroll key={item.year} delay={index * 0.15}>
-                <div className="flex gap-6">
-                  <div className="flex flex-col items-center">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
-                      <span className="text-xs font-semibold text-gold">
-                        {item.year.slice(2)}
-                      </span>
-                    </div>
-                    {index < timeline.length - 1 && (
-                      <div className="mt-2 h-full w-px bg-gold/20" />
-                    )}
-                  </div>
-                  <div className="pb-8">
-                    <p className="text-xs font-medium uppercase tracking-wider text-gold">
-                      {item.year}
-                    </p>
-                    <h3 className="mt-1 font-serif text-xl text-cream">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-cream/60">
-                      {item.description}
-                    </p>
-                  </div>
+          <div className="space-y-6">
+            {differences.map((item, index) => (
+              <RevealOnScroll key={item.title} delay={index * 0.12}>
+                <div className="group rounded-lg border border-gold/10 bg-canopy/30 p-6 transition-all duration-500 hover:border-gold/30">
+                  <h3 className="font-serif text-xl text-gold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-cream/60">
+                    {item.description}
+                  </p>
                 </div>
               </RevealOnScroll>
             ))}

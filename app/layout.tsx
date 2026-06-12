@@ -18,9 +18,9 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Fresh Face Herbals | Premium Herbal Skincare from Kavery Delta",
+  title: "Fresh Face Herbals | Salon Herbals from Our Own Land",
   description:
-    "Ancestral herbal skincare rooted in the Kavery Delta, Tamil Nadu. Salon-grade facials, therapeutic oils, and botanical rituals — 100% natural, zero synthetics.",
+    "Herbals made exclusively for salon service. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land. 100% natural, zero synthetics.",
 };
 
 export default function RootLayout({

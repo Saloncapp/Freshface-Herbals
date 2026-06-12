@@ -1,12 +1,6 @@
 import Link from "next/link";
 import { Camera, MessageCircle, BookOpen } from "lucide-react";
 
-const storyLinks = [
-  { href: "/our-story", label: "Our Heritage" },
-  { href: "/our-story#generations", label: "Three Generations" },
-  { href: "/our-story#philosophy", label: "Philosophy" },
-];
-
 const serviceLinks = [
   { href: "/services", label: "Facial Treatments" },
   { href: "/services", label: "Massage Therapy" },
@@ -18,34 +12,16 @@ export default function Footer() {
   return (
     <footer className="border-t border-gold/15 bg-deep">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <h3 className="font-serif text-xl font-semibold text-gold">
               Fresh Face Herbals
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-cream/60">
-              Premium herbal skincare rooted in the Kavery Delta, Tamil Nadu.
-              Three generations of ancestral formulas — 100% natural, zero
-              synthetics.
+              Salon-exclusive herbals from our own land in Tamil Nadu. Founded
+              by Jawahar — ancestral wisdom, zero synthetics, made for
+              professional rituals.
             </p>
-          </div>
-
-          <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gold">
-              Our Story
-            </h4>
-            <ul className="space-y-2">
-              {storyLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-cream/60 transition-colors hover:text-gold"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div>

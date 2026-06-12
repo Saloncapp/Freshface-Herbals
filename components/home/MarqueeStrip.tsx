@@ -1,9 +1,10 @@
 const items = [
-  "Kavery Delta",
+  "Made for Salons",
+  "From Our Land",
+  "Ancestral Wisdom",
   "Chemical Free",
-  "Ancestral Formulas",
   "Salon Grade",
-  "Cold Pressed",
+  "Zero Synthetics",
 ];
 
 export default function MarqueeStrip() {

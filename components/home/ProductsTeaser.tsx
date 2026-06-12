@@ -14,7 +14,7 @@ export default function ProductsTeaser() {
             Our Collection
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light text-cream md:text-5xl">
-            Botanical Essentials
+            From Our Land to Your Salon
           </h2>
           <GoldDivider className="mx-auto mt-6 max-w-xs" />
         </RevealOnScroll>

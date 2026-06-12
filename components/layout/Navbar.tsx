@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -36,8 +37,18 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link href="/" className="font-serif text-2xl font-semibold text-gold">
-          Fresh Face Herbals
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/freshface-harbals-logo.png"
+            alt="Fresh Face Herbals"
+            width={48}
+            height={48}
+            className="h-10 w-10 rounded-full object-cover md:h-12 md:w-12"
+            priority
+          />
+          <span className="hidden font-serif text-xl font-semibold text-gold sm:inline md:text-2xl">
+            Fresh Face Herbals
+          </span>
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

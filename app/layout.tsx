@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Fresh Face Herbals | Salon Herbals from Our Own Land",
   description:
     "Herbals made exclusively for salon service. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land. 100% natural, zero synthetics.",
+  icons: {
+    icon: [{ url: "/freshface-harbals-logo.png", type: "image/png" }],
+    apple: "/freshface-harbals-logo.png",
+  },
 };
 
 export default function RootLayout({

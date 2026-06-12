@@ -5,6 +5,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import FloatingLeaves from "@/components/ui/FloatingLeaves";
 import WaterSplash from "@/components/ui/WaterSplash";
+import {
+  useWaterClickRipple,
+  WaterClickRippleLayer,
+} from "@/components/ui/WaterClickRipple";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,6 +29,14 @@ const itemVariants = {
 
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
+  const {
+    ripples,
+    handlePointerDown,
+    handlePointerMove,
+    handlePointerUp,
+    handlePointerLeave,
+    removeRipple,
+  } = useWaterClickRipple();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -37,7 +49,11 @@ export default function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-deep via-forest to-canopy"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerLeave}
+      className="relative flex min-h-screen cursor-pointer touch-none select-none items-center justify-center overflow-hidden bg-gradient-to-b from-deep via-forest to-canopy"
     >
       {/* Parallax background layers */}
       <motion.div
@@ -54,6 +70,7 @@ export default function HeroSection() {
       </motion.div>
 
       <WaterSplash variant="hero" />
+      <WaterClickRippleLayer ripples={ripples} onRippleComplete={removeRipple} />
 
       <motion.div
         className="relative z-10 mx-auto max-w-4xl px-6 text-center"

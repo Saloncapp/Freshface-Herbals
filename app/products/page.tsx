@@ -2,7 +2,9 @@ import ProductCard from "@/components/products/ProductCard";
 import GoldDivider from "@/components/ui/GoldDivider";
 import { products } from "@/data/products";
 
-const categories = [...new Set(products.map((p) => p.category))];
+const categories = Array.from(
+  new Set(products.map((p) => p.category))
+);
 
 function BotanicalAccent() {
   return (

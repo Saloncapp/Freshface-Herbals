@@ -7,7 +7,7 @@ const pillars = [
   {
     icon: Scissors,
     title: "Made for Salons",
-    description: "Formulated exclusively for professional salon rituals",
+    description: "Formulated exclusively for professional ritual",
   },
   {
     icon: Leaf,

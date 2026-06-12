@@ -59,7 +59,7 @@ export default function FounderStory() {
               <p>
                 While others looked outward for ingredients and inspiration,
                 Jawahar looked inward — to the soil beneath his feet, to the
-                wisdom passed through his family, to the salon rituals that
+                wisdom passed through his family, to the professional ritual that
                 demanded something more than ordinary herbal products.
               </p>
               <p>

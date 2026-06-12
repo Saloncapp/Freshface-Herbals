@@ -247,8 +247,17 @@ export function useWaterClickRipple() {
     setRipples((prev) => prev.filter((r) => r.id !== id));
   }, []);
 
+  const spawnRipple = useCallback(
+    (x: number, y: number, variant: "burst" | "trail" = "burst") => {
+      addRipple(x, y, variant);
+      lastSpawn.current = { x, y, time: Date.now() };
+    },
+    [addRipple]
+  );
+
   return {
     ripples,
+    spawnRipple,
     handlePointerDown,
     handlePointerEnter,
     handlePointerMove,

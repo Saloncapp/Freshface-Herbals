@@ -9,7 +9,7 @@ const differences = [
   {
     title: "Made for Salons, Not Shelves",
     description:
-      "Most herbal brands sell the same products to everyone. We formulate exclusively for professional salon rituals — facials, massages, hair colour, and pedicures that demand real results.",
+      "Most herbal brands sell the same products to everyone. We formulate exclusively for professional ritual — facials, massages, hair colour, and pedicures that demand real results.",
   },
   {
     title: "Ancestral Wisdom, Not Shortcuts",

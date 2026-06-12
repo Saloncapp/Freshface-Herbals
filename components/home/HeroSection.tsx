@@ -31,6 +31,7 @@ export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
   const {
     ripples,
+    spawnRipple,
     handlePointerDown,
     handlePointerEnter,
     handlePointerMove,
@@ -68,11 +69,18 @@ export default function HeroSection() {
       />
 
       <motion.div style={{ y: bgY }}>
-        <FloatingLeaves />
+        <WaterSplash variant="hero" />
       </motion.div>
 
-      <WaterSplash variant="hero" />
       <WaterClickRippleLayer ripples={ripples} onRippleComplete={removeRipple} />
+
+      <motion.div style={{ y: bgY }} className="absolute inset-0">
+        <FloatingLeaves
+          ripples={ripples}
+          containerRef={ref}
+          onRipple={spawnRipple}
+        />
+      </motion.div>
 
       <motion.div
         className="relative z-10 mx-auto max-w-4xl px-6 text-center"
@@ -94,7 +102,7 @@ export default function HeroSection() {
         >
           Herbals Crafted for
           <span className="mt-2 block font-medium italic text-gold">
-            Salon Rituals
+            Professional Ritual
           </span>
         </motion.h1>
 

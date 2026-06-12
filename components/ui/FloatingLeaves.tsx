@@ -1,6 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import type { ClickRipple } from "@/components/ui/WaterClickRipple";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  type SpringOptions,
+} from "framer-motion";
+import { useCallback, useEffect, useRef, type RefObject } from "react";
 
 type ElementType = "leaf" | "flower";
 type LeafVariant = "broad" | "slender";
@@ -19,6 +26,11 @@ interface FloatingElement {
   duration?: number;
 }
 
+const SPRING: SpringOptions = { stiffness: 65, damping: 9, mass: 1.2 };
+
+const RIPPLE_RADIUS = { burst: 360, trail: 240 };
+const RIPPLE_FORCE = { burst: 95, trail: 58 };
+
 const elements: FloatingElement[] = [
   { id: 1, type: "leaf", variant: "broad", x: "10%", y: "20%", size: 80, delay: 0, rotate: -15, color: "text-sage" },
   { id: 2, type: "leaf", variant: "slender", x: "75%", y: "15%", size: 60, delay: 0.5, rotate: 25, color: "text-sage" },
@@ -30,14 +42,40 @@ const elements: FloatingElement[] = [
   { id: 8, type: "leaf", variant: "broad", x: "68%", y: "72%", size: 58, delay: 0.6, rotate: 18, color: "text-sage/80" },
   { id: 9, type: "leaf", variant: "slender", x: "38%", y: "10%", size: 44, delay: 1.8, rotate: 12, color: "text-sage/65" },
   { id: 10, type: "leaf", variant: "broad", x: "52%", y: "90%", size: 50, delay: 2.1, rotate: -28, color: "text-sage/70" },
-  { id: 11, type: "flower", variant: "hibiscus", x: "28%", y: "24%", size: 72, delay: 0.4, rotate: -10, color: "text-gold", duration: 9 },
   { id: 12, type: "flower", variant: "blossom", x: "88%", y: "20%", size: 56, delay: 1.1, rotate: 15, color: "text-gold/80", duration: 7 },
   { id: 13, type: "flower", variant: "blossom", x: "6%", y: "38%", size: 48, delay: 0.9, rotate: -5, color: "text-gold/70", duration: 8 },
   { id: 15, type: "flower", variant: "blossom", x: "20%", y: "80%", size: 52, delay: 1.7, rotate: -18, color: "text-gold/75", duration: 7.5 },
   { id: 16, type: "flower", variant: "hibiscus", x: "80%", y: "82%", size: 60, delay: 0.2, rotate: 8, color: "text-gold/80", duration: 9.5 },
   { id: 17, type: "flower", variant: "blossom", x: "48%", y: "6%", size: 40, delay: 2.3, rotate: 0, color: "text-gold/60", duration: 6.5 },
   { id: 18, type: "leaf", variant: "slender", x: "95%", y: "78%", size: 46, delay: 1.3, rotate: 40, color: "text-sage/60" },
+  { id: 19, type: "flower", variant: "hibiscus", x: "4%", y: "11%", size: 58, delay: 0.5, rotate: -12, color: "text-gold/75", duration: 8.5 },
+  { id: 20, type: "flower", variant: "blossom", x: "93%", y: "48%", size: 50, delay: 1.6, rotate: 20, color: "text-gold/70", duration: 7 },
+  { id: 21, type: "flower", variant: "hibiscus", x: "91%", y: "70%", size: 54, delay: 0.7, rotate: -8, color: "text-gold/80", duration: 9 },
+  { id: 22, type: "flower", variant: "blossom", x: "7%", y: "86%", size: 48, delay: 2, rotate: 14, color: "text-gold/65", duration: 7.5 },
+  { id: 23, type: "flower", variant: "hibiscus", x: "74%", y: "5%", size: 52, delay: 1.3, rotate: 18, color: "text-gold/70", duration: 8 },
 ];
+
+function getElementCenter(
+  el: FloatingElement,
+  containerWidth: number,
+  containerHeight: number
+) {
+  return {
+    x: (parseFloat(el.x) / 100) * containerWidth + el.size / 2,
+    y: (parseFloat(el.y) / 100) * containerHeight + el.size / 2,
+  };
+}
+
+function getLocalPoint(
+  e: React.PointerEvent<HTMLElement>,
+  container: HTMLElement
+) {
+  const rect = container.getBoundingClientRect();
+  return {
+    x: e.clientX - rect.left,
+    y: e.clientY - rect.top,
+  };
+}
 
 function BroadLeafSVG({ size }: { size: number }) {
   return (
@@ -198,14 +236,106 @@ function FloatingElementGraphic({
   );
 }
 
-export default function FloatingLeaves() {
+function FloatingElementItem({
+  el,
+  ripples = [],
+  containerRef,
+  onRipple,
+}: {
+  el: FloatingElement;
+  ripples?: ClickRipple[];
+  containerRef?: RefObject<HTMLElement | null>;
+  onRipple?: (x: number, y: number, variant: "burst" | "trail") => void;
+}) {
+  const offsetX = useMotionValue(0);
+  const offsetY = useMotionValue(0);
+  const offsetRotate = useMotionValue(0);
+  const springX = useSpring(offsetX, SPRING);
+  const springY = useSpring(offsetY, SPRING);
+  const springRotate = useSpring(offsetRotate, SPRING);
+  const processedRipples = useRef<Set<number>>(new Set());
+  const returnTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const applyImpulse = useCallback(
+    (px: number, py: number, pr: number) => {
+      offsetX.set(offsetX.get() + px);
+      offsetY.set(offsetY.get() + py);
+      offsetRotate.set(offsetRotate.get() + pr);
+
+      if (returnTimer.current) clearTimeout(returnTimer.current);
+      returnTimer.current = setTimeout(() => {
+        offsetX.set(0);
+        offsetY.set(0);
+        offsetRotate.set(0);
+      }, 140);
+    },
+    [offsetX, offsetY, offsetRotate]
+  );
+
+  useEffect(() => {
+    const container = containerRef?.current;
+    if (!container || ripples.length === 0) return;
+
+    const { width, height } = container.getBoundingClientRect();
+    const center = getElementCenter(el, width, height);
+    const weight = el.type === "flower" ? 0.75 : 1;
+
+    ripples.forEach((ripple) => {
+      if (processedRipples.current.has(ripple.id)) return;
+      processedRipples.current.add(ripple.id);
+
+      const dx = center.x - ripple.x;
+      const dy = center.y - ripple.y;
+      const dist = Math.hypot(dx, dy);
+      const radius = RIPPLE_RADIUS[ripple.variant];
+
+      if (dist >= radius || dist < 1) return;
+
+      const falloff = 1 - dist / radius;
+      const force = RIPPLE_FORCE[ripple.variant] * falloff * falloff * weight;
+      const nx = dx / dist;
+      const ny = dy / dist;
+
+      applyImpulse(nx * force, ny * force, nx * 14 * weight);
+    });
+  }, [ripples, el, containerRef, applyImpulse]);
+
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+
+      const container = containerRef?.current;
+
+      if (container && onRipple) {
+        const { x, y } = getLocalPoint(e, container);
+        onRipple(x, y, "burst");
+        return;
+      }
+
+      const rect = e.currentTarget.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const len = Math.hypot(dx, dy) || 1;
+      const weight = el.type === "flower" ? 0.75 : 1;
+      const force = (el.type === "flower" ? 55 : 78) * weight;
+
+      applyImpulse(
+        (dx / len) * force,
+        (dy / len) * force,
+        (dx / len) * 16 * weight
+      );
+    },
+    [containerRef, onRipple, el.type, applyImpulse]
+  );
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      {elements.map((el) => (
+    <div className="pointer-events-auto absolute" style={{ left: el.x, top: el.y }}>
+      <motion.div style={{ x: springX, y: springY, rotate: springRotate }}>
         <motion.div
-          key={el.id}
-          className={`absolute ${el.color}`}
-          style={{ left: el.x, top: el.y }}
+          role="presentation"
+          className={`${el.color} cursor-pointer touch-none`}
           animate={{
             y: [0, -20, 0, 15, 0],
             rotate: [
@@ -226,12 +356,43 @@ export default function FloatingLeaves() {
             ease: "easeInOut",
           }}
         >
-          <FloatingElementGraphic
-            type={el.type}
-            variant={el.variant}
-            size={el.size}
-          />
+          <div
+            className="-m-4 p-4"
+            onPointerDown={handlePointerDown}
+          >
+            <FloatingElementGraphic
+              type={el.type}
+              variant={el.variant}
+              size={el.size}
+            />
+          </div>
         </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+interface FloatingLeavesProps {
+  ripples?: ClickRipple[];
+  containerRef?: RefObject<HTMLElement | null>;
+  onRipple?: (x: number, y: number, variant: "burst" | "trail") => void;
+}
+
+export default function FloatingLeaves({
+  ripples,
+  containerRef,
+  onRipple,
+}: FloatingLeavesProps = {}) {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[6] overflow-hidden">
+      {elements.map((el) => (
+        <FloatingElementItem
+          key={el.id}
+          el={el}
+          ripples={ripples}
+          containerRef={containerRef}
+          onRipple={onRipple}
+        />
       ))}
     </div>
   );

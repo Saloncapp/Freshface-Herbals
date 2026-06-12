@@ -14,7 +14,7 @@ export default function ProductsTeaser() {
             Our Collection
           </p>
           <h2 className="mt-3 font-serif text-4xl font-light text-cream md:text-5xl">
-            Daily Care, Salon Grade
+            Daily Care, Professional Grade
           </h2>
           <GoldDivider className="mx-auto mt-6 max-w-xs" />
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-cream/45">

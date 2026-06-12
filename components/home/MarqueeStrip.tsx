@@ -3,7 +3,7 @@ const items = [
   "From Our Land",
   "Ancestral Wisdom",
   "Chemical Free",
-  "Salon Grade",
+  "Professional Grade",
   "Zero Synthetics",
 ];
 

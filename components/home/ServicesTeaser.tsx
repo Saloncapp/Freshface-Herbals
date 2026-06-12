@@ -10,7 +10,7 @@ const categories = [
     icon: Sparkles,
     title: "Facial",
     description:
-      "Salon-grade facial rituals with ancestral botanicals from our own land",
+      "Professional-grade facial rituals with ancestral botanicals from our own land",
     href: "/services",
   },
   {

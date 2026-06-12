@@ -32,6 +32,7 @@ export default function HeroSection() {
   const {
     ripples,
     handlePointerDown,
+    handlePointerEnter,
     handlePointerMove,
     handlePointerUp,
     handlePointerLeave,
@@ -50,6 +51,7 @@ export default function HeroSection() {
     <section
       ref={ref}
       onPointerDown={handlePointerDown}
+      onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}

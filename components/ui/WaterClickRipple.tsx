@@ -200,9 +200,9 @@ export function useWaterClickRipple() {
     [spawnAt]
   );
 
-  const handlePointerMove = useCallback(
+  const spawnTrailIfMoved = useCallback(
     (e: React.PointerEvent<HTMLElement>) => {
-      if (!isDragging.current) return;
+      if (isInteractiveTarget(e.target)) return;
 
       const { x, y } = getLocalPoint(e, e.currentTarget);
       const dx = x - lastSpawn.current.x;
@@ -216,6 +216,23 @@ export function useWaterClickRipple() {
       }
     },
     [addRipple]
+  );
+
+  const handlePointerEnter = useCallback(
+    (e: React.PointerEvent<HTMLElement>) => {
+      const { x, y } = getLocalPoint(e, e.currentTarget);
+      lastSpawn.current = { x, y, time: Date.now() };
+    },
+    []
+  );
+
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLElement>) => {
+      if (isDragging.current || e.pointerType === "mouse") {
+        spawnTrailIfMoved(e);
+      }
+    },
+    [spawnTrailIfMoved]
   );
 
   const endDrag = useCallback((e: React.PointerEvent<HTMLElement>) => {
@@ -233,6 +250,7 @@ export function useWaterClickRipple() {
   return {
     ripples,
     handlePointerDown,
+    handlePointerEnter,
     handlePointerMove,
     handlePointerUp: endDrag,
     handlePointerLeave: endDrag,

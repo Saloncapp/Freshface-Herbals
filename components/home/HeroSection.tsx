@@ -53,7 +53,7 @@ export default function HeroSection() {
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
-      className="relative flex min-h-screen cursor-pointer touch-none select-none items-center justify-center overflow-hidden bg-gradient-to-b from-deep via-forest to-canopy"
+      className="relative flex min-h-screen cursor-pointer select-none items-center justify-center overflow-hidden bg-gradient-to-b from-deep via-forest to-canopy"
     >
       {/* Parallax background layers */}
       <motion.div

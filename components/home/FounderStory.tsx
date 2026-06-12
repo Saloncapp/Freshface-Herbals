@@ -28,7 +28,7 @@ const values = [
 
 export default function FounderStory() {
   return (
-    <section id="story" className="bg-deep py-24">
+    <section id="story" className="scroll-mt-24 bg-deep py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <RevealOnScroll className="mb-16 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-gold">

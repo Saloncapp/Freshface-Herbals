@@ -146,6 +146,13 @@ function getLocalPoint(
   };
 }
 
+function isInteractiveTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof Element)) return false;
+  return !!target.closest(
+    'a, button, input, textarea, select, label, [role="button"], [data-no-ripple]'
+  );
+}
+
 export function useWaterClickRipple() {
   const [ripples, setRipples] = useState<ClickRipple[]>([]);
   const isDragging = useRef(false);
@@ -184,6 +191,7 @@ export function useWaterClickRipple() {
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<HTMLElement>) => {
       if (e.button !== 0) return;
+      if (isInteractiveTarget(e.target)) return;
       elementRef.current = e.currentTarget;
       isDragging.current = true;
       e.currentTarget.setPointerCapture(e.pointerId);

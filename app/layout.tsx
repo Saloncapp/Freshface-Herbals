@@ -23,10 +23,8 @@ export const metadata: Metadata = {
   description:
     "Herbals made exclusively for salon service. Founded by Jawahar in Tamil Nadu — ancestral formulas using ingredients from our own land. 100% natural, zero synthetics.",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.png", type: "image/png", sizes: "48x48" },
-    ],
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "48x48" }],
+    shortcut: "/favicon.png",
     apple: "/apple-icon.png",
   },
   openGraph: {

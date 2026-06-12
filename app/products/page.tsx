@@ -45,7 +45,7 @@ export default function ProductsPage() {
 
         <div className="relative z-10 px-6 text-center">
           <p className="text-sm font-medium uppercase tracking-[0.25em] text-gold">
-            Salon Prescription Wall
+            SIGNATURE HERBAL FORMULATIONS
           </p>
           <h1 className="mt-4 font-serif text-5xl font-light text-cream md:text-7xl">
             Daily Care Collection

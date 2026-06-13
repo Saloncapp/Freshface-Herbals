@@ -166,15 +166,8 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
 
                 <button
                   type="button"
-                  className="mt-7 w-full rounded-sm border border-gold bg-gold/10 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-gold transition-all duration-300 hover:bg-gold hover:text-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold active:scale-[0.98]"
-                >
-                  Add to Enquiry
-                </button>
-
-                <button
-                  type="button"
                   onClick={() => setExpanded(false)}
-                  className="mt-4 w-full py-2 text-xs font-medium uppercase tracking-[0.15em] text-gold/60 transition-colors duration-300 hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  className="mt-7 w-full py-2 text-xs font-medium uppercase tracking-[0.15em] text-gold/60 transition-colors duration-300 hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                 >
                   Collapse
                 </button>

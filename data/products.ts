@@ -93,6 +93,7 @@ export const products: Product[] = [
       "Leaves skin smooth and refreshed after salon treatments",
     ],
     ingredients: ["Red Wine Extract", "Grape Seed Oil", "Aloe Vera", "Vitamin E"],
+    image: "/assets/Retail/redwine-gel.png",
   },
   {
     id: "almond-milk-moisturising-cream",
@@ -155,6 +156,7 @@ export const products: Product[] = [
       "Suitable for oily and combination skin types",
     ],
     ingredients: ["Neem Extract", "Tea Tree Oil", "Willow Bark", "Niacinamide"],
+    image: "/assets/Retail/serum-for-acne-prone-skin.png",
   },
 ];
 

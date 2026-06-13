@@ -75,6 +75,26 @@ export const products: Product[] = [
     image: "/assets/Retail/aloevera-gel.png",
   },
   {
+    id: "red-wine-gel",
+    name: "Red Wine Gel",
+    category: "Face + Body",
+    description:
+      "A lightweight gel infused with red wine extract and grape antioxidants — formulated to revive dull skin, improve elasticity, and deliver a fresh, salon-polished finish.",
+    howToUse: [
+      "Apply a thin layer to cleansed face and neck",
+      "Massage gently until fully absorbed",
+      "Use after facials or as a daily brightening treatment",
+      "Follow with moisturiser if skin feels dry",
+    ],
+    benefits: [
+      "Boosts radiance and evens dull, tired skin",
+      "Antioxidant-rich formula helps fight early signs of ageing",
+      "Lightweight gel texture suits oily and combination skin",
+      "Leaves skin smooth and refreshed after salon treatments",
+    ],
+    ingredients: ["Red Wine Extract", "Grape Seed Oil", "Aloe Vera", "Vitamin E"],
+  },
+  {
     id: "almond-milk-moisturising-cream",
     name: "Almond & Milk Moisturising Cream",
     category: "Face + Body",

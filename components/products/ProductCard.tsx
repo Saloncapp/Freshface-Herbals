@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/data/products";
 import BenefitsList from "./BenefitsList";
@@ -52,6 +53,19 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         }`}
       >
         <CardBotanicalMark />
+
+        {product.image ? (
+          <div className="relative aspect-[4/3] overflow-hidden bg-deep/40">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-105"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-canopy/50 to-transparent" />
+          </div>
+        ) : null}
 
         <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold/40 via-gold/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 

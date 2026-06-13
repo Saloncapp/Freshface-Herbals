@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import GoldDivider from "@/components/ui/GoldDivider";
@@ -28,6 +29,19 @@ export default function ProductsTeaser() {
             <RevealOnScroll key={product.id} delay={index * 0.15}>
               <div className="group relative h-full overflow-hidden rounded-lg border border-gold/10 bg-forest p-6 transition-all duration-500 hover:scale-[1.02] hover:border-gold/30 hover:shadow-[0_4px_24px_rgba(201,168,76,0.06)]">
                 <div className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-gold/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                {product.image ? (
+                  <div className="relative -mx-6 -mt-6 mb-6 aspect-[4/3] overflow-hidden bg-deep/40">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-forest/50 to-transparent" />
+                  </div>
+                ) : null}
 
                 <span className="inline-block rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-gold">
                   {product.category}

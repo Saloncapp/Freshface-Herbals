@@ -6,6 +6,7 @@ export interface Product {
   howToUse: string[];
   benefits: string[];
   ingredients: string[];
+  image?: string;
   isOil?: boolean;
 }
 
@@ -29,6 +30,7 @@ export const products: Product[] = [
       "Balances scalp without stripping moisture",
     ],
     ingredients: ["Hibiscus Flower", "Bhringraj", "Amla", "Coconut Surfactant"],
+    image: "/assets/Retail/hibiscus-shampoo.png",
   },
   {
     id: "almond-milk-conditioner",
@@ -49,6 +51,7 @@ export const products: Product[] = [
       "Milk protein rebuilds hair structure",
     ],
     ingredients: ["Sweet Almond Oil", "Milk Protein", "Shea Butter", "Vitamin E"],
+    image: "/assets/Retail/almond&milk-conditioner.png",
   },
   {
     id: "aloe-vera-gel",
@@ -69,6 +72,7 @@ export const products: Product[] = [
       "Anti-inflammatory for sensitive skin types",
     ],
     ingredients: ["Aloe Vera Leaf", "Witch Hazel", "Vitamin E", "Chamomile"],
+    image: "/assets/Retail/aloevera-gel.png",
   },
   {
     id: "almond-milk-moisturising-cream",
@@ -89,6 +93,7 @@ export const products: Product[] = [
       "Creates a smooth base for makeup application",
     ],
     ingredients: ["Sweet Almond Oil", "Milk Extract", "Glycerin", "Beeswax"],
+    image: "/assets/Retail/almond&milk-cream.png",
   },
   {
     id: "vanilla-lip-balm",
@@ -109,6 +114,7 @@ export const products: Product[] = [
       "Compact size ideal for salon retail",
     ],
     ingredients: ["Shea Butter", "Vanilla Bean", "Beeswax", "Coconut Oil"],
+    image: "/assets/Retail/vanilla-lip-balm.png",
   },
   {
     id: "acne-prone-serum",

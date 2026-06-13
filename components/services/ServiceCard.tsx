@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { Service } from "@/data/services";
+import BenefitChip from "@/components/ui/BenefitChip";
 import { getServiceIcon } from "@/lib/service-icons";
 
 interface ServiceCardProps {
@@ -55,7 +56,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
         <div className="flex flex-1 flex-col p-6">
           <h3 className="font-serif text-xl text-cream">{service.name}</h3>
-          <p className="mt-1 text-sm text-gold/80">{service.tagline}</p>
+          <BenefitChip label={service.tagline} className="mt-2" />
           <p className="mt-4 line-clamp-3 flex-1 text-sm leading-relaxed text-cream/55">
             {service.description}
           </p>

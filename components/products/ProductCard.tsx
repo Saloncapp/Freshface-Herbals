@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "@/data/products";
+import BenefitChip from "@/components/ui/BenefitChip";
 import BenefitsList from "./BenefitsList";
 
 interface ProductCardProps {
@@ -70,18 +71,15 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-gold/40 via-gold/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
         <div className="p-7">
-          <div className="flex items-start justify-between gap-4">
+          <h3 className="font-serif text-2xl leading-tight text-cream transition-colors duration-300 group-hover:text-goldLight">
+            {product.name}
+          </h3>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <BenefitChip label={product.highlight} />
             <span className="inline-block rounded-full border border-gold/20 bg-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-gold">
               {product.category}
             </span>
-            <span className="font-serif text-sm text-gold/30">
-              {String(index + 1).padStart(2, "0")}
-            </span>
           </div>
-
-          <h3 className="mt-5 font-serif text-2xl leading-tight text-cream transition-colors duration-300 group-hover:text-goldLight">
-            {product.name}
-          </h3>
           <p className="mt-3 text-sm leading-relaxed text-cream/50">
             {product.description}
           </p>

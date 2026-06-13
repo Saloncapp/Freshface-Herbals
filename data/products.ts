@@ -2,6 +2,7 @@ export interface Product {
   id: string;
   name: string;
   category: string;
+  highlight: string;
   description: string;
   howToUse: string[];
   benefits: string[];
@@ -15,6 +16,7 @@ export const products: Product[] = [
     id: "hibiscus-shampoo",
     name: "Hibiscus Shampoo",
     category: "Hair Care",
+    highlight: "Anti-frizz control",
     description:
       "A gentle cleansing shampoo infused with hibiscus flower extract and bhringraj — formulated to strengthen hair from root to tip while preserving natural oils.",
     howToUse: [
@@ -36,6 +38,7 @@ export const products: Product[] = [
     id: "almond-milk-conditioner",
     name: "Almond & Milk Conditioner",
     category: "Hair Care",
+    highlight: "Easy detangler",
     description:
       "A nourishing conditioner blending sweet almond oil with milk protein — designed to detangle, soften, and restore salon-treated hair to its natural silkiness.",
     howToUse: [
@@ -57,6 +60,7 @@ export const products: Product[] = [
     id: "aloe-vera-gel",
     name: "Aloe Vera Gel",
     category: "Face + Body",
+    highlight: "Natural moisture",
     description:
       "Pure aloe vera gel harvested from delta-grown plants — a cooling, lightweight treatment for irritated skin, sun exposure, and post-facial recovery.",
     howToUse: [
@@ -78,6 +82,7 @@ export const products: Product[] = [
     id: "red-wine-gel",
     name: "Red Wine Gel",
     category: "Face + Body",
+    highlight: "Skin tightening",
     description:
       "A lightweight gel infused with red wine extract and grape antioxidants — formulated to revive dull skin, improve elasticity, and deliver a fresh, salon-polished finish.",
     howToUse: [
@@ -99,6 +104,7 @@ export const products: Product[] = [
     id: "almond-milk-moisturising-cream",
     name: "Almond & Milk Moisturising Cream",
     category: "Face + Body",
+    highlight: "Skin lightening",
     description:
       "A rich yet fast-absorbing cream combining almond oil with milk extract — the daily moisturiser for salon clients who need lasting hydration without greasiness.",
     howToUse: [
@@ -120,6 +126,7 @@ export const products: Product[] = [
     id: "vanilla-lip-balm",
     name: "Vanilla Lip Balm",
     category: "Lip Care",
+    highlight: "Lip therapy and moisture",
     description:
       "A protective lip balm crafted with shea butter and vanilla bean extract — seals moisture into delicate lip skin while delivering a subtle, natural vanilla scent.",
     howToUse: [
@@ -141,6 +148,7 @@ export const products: Product[] = [
     id: "acne-prone-serum",
     name: "Serum for Acne Prone Skin",
     category: "Face — Treatment",
+    highlight: "Acne prone skin care",
     description:
       "A targeted treatment serum with neem, tea tree, and salicylic acid from willow bark — formulated to clear congestion, reduce breakouts, and calm inflamed skin without harsh chemicals.",
     howToUse: [

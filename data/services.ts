@@ -181,7 +181,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "avaram-poo-facial",
         name: "Avaram Poo (Cassia auriculata) Facial",
-        tagline: "Golden flower brightening ritual",
+        tagline: "Oil control",
         description:
           "A traditional Tamil herbal facial built around Avaram Poo, a golden flower treasured for cooling, brightening, and balancing tired skin.",
         icon: "Sun",
@@ -195,7 +195,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "papaya-facial",
         name: "Papaya Facial",
-        tagline: "Enzyme-powered skin renewal",
+        tagline: "Skin whitening",
         description:
           "A papain-rich facial for dull, uneven skin. Papaya enzymes gently loosen dead cells while the ritual leaves skin smoother and brighter.",
         icon: "Citrus",
@@ -209,7 +209,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "banana-facial",
         name: "Banana Facial",
-        tagline: "Nourishing tropical moisture ritual",
+        tagline: "Natural moisture for dry skin",
         description:
           "A vitamin-rich banana facial using ripe Kavery Delta bananas — natural potassium and moisture-binding enzymes soften, hydrate, and illuminate tired skin.",
         icon: "Banana",
@@ -223,7 +223,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "neem-tulasi-facial",
         name: "Neem & Tulasi Facial",
-        tagline: "Clarifying herbal balance ritual",
+        tagline: "Anti-acne care",
         description:
           "A purifying facial with neem and tulasi for skin that feels congested, oily, or stressed. Cooling herbs help calm and clarify without harshness.",
         icon: "LeafyGreen",
@@ -237,7 +237,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "multi-fruits-facial",
         name: "Multi Fruits Facial",
-        tagline: "Vitamin-rich fruit glow ritual",
+        tagline: "Vitamin-rich care to help heal tired skin",
         description:
           "A bright, antioxidant facial with fruit extracts that revive dull skin and bring a naturally fresh salon glow.",
         icon: "Grape",
@@ -251,7 +251,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "saffron-facial",
         name: "Saffron Facial",
-        tagline: "10-step luxury radiance ritual",
+        tagline: "Bridal glow and skin repair care",
         description:
           "A premium saffron ritual for luminous skin, layering ten treatments from cleansing milk to serum for a refined golden finish.",
         icon: "Gem",
@@ -265,7 +265,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "sangu-poo-facial",
         name: "Sangu Poo Facial",
-        tagline: "10-step blue flower calming ritual",
+        tagline: "Instant glow and under-eye dark circle care",
         description:
           "A Sangu Poo flower ritual inspired by Tamil herbal care, designed to calm visible stress while giving skin a soft, hydrated glow.",
         icon: "Flower",
@@ -285,7 +285,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "flax-seed-massage",
         name: "Flax Seed Oil Massage",
-        tagline: "Omega-rich full body renewal",
+        tagline: "Omega moisture for dry skin comfort",
         description:
           "A deeply nourishing body massage using flax seed oil for dry skin, fatigue, and a soft healthy glow.",
         icon: "Leaf",
@@ -299,7 +299,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "moringa-massage",
         name: "Moringa Oil Massage",
-        tagline: "Nutrient-rich herbal vitality massage",
+        tagline: "Nourishes skin, scalp, and tired muscles",
         description:
           "A moringa oil massage for skin and scalp nourishment, bringing the richness of the miracle tree into a calming ritual.",
         icon: "TreePine",
@@ -313,7 +313,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "coconut-massage",
         name: "Coconut Oil Massage",
-        tagline: "Traditional delta warmth ritual",
+        tagline: "Deep softness and dryness relief",
         description:
           "A traditional warm coconut oil massage for deep comfort, softness, and classic Tamil herbal care.",
         icon: "Droplets",
@@ -327,7 +327,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "citrullus-kumatikai-oil-massage",
         name: "Citrullus (Kumatikai) Oil Massage",
-        tagline: "Cooling seed oil body ritual",
+        tagline: "Cooling lightweight hydration",
         description:
           "A cooling Citrullus, also called Kumatikai, oil massage for skin that needs light hydration and summer comfort.",
         icon: "Citrus",
@@ -341,7 +341,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "hair-growth-oil-massage",
         name: "Hair Growth Oil Massage",
-        tagline: "Scalp strengthening ritual",
+        tagline: "Root nourishment and scalp circulation support",
         description:
           "A focused scalp massage using herbal hair growth oil to nourish roots and relax the head.",
         icon: "Sprout",
@@ -355,7 +355,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "black-oil-massage",
         name: "Black Oil Massage",
-        tagline: "Deep tissue therapeutic relief",
+        tagline: "Stiffness relief and deep relaxation",
         description:
           "A stronger black oil massage for body heaviness, stiffness, and deep relaxation.",
         icon: "Flame",
@@ -369,7 +369,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "organic-leaf-body-massage-oil",
         name: "Body Massage Oil (Fully Organic Leaf)",
-        tagline: "Whole-leaf organic body care",
+        tagline: "Organic leaf nourishment for soft skin",
         description:
           "A fully organic leaf-based body massage oil ritual for gentle nourishment and natural freshness.",
         icon: "LeafyGreen",
@@ -389,7 +389,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "banana-leaf-pedicure",
         name: "Banana Leaf Pedicure",
-        tagline: "Softening herbal foot ritual",
+        tagline: "Heel repair and moisture care",
         description:
           "A banana leaf pedicure for tired feet, dry heels, and a fresh botanical salon finish.",
         icon: "Footprints",
@@ -400,7 +400,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "tulasi-pedicure",
         name: "Tulasi Pedicure",
-        tagline: "Fresh herbal foot cleanse",
+        tagline: "Antibacterial and antifungal foot care",
         description:
           "A tulasi pedicure that refreshes, cleanses, and comforts feet with a cooling herbal finish.",
         icon: "LeafyGreen",
@@ -417,7 +417,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "banana-leaf-manicure",
         name: "Banana Leaf Manicure",
-        tagline: "Softening herbal hand ritual",
+        tagline: "Cuticle moisture and soft hand care",
         description:
           "A banana leaf manicure for soft hands, neat nails, and a naturally polished finish.",
         icon: "Banana",
@@ -428,7 +428,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         id: "tulasi-manicure",
         name: "Tulasi Manicure",
-        tagline: "Fresh herbal hand cleanse",
+        tagline: "Fresh antibacterial hand care",
         description:
           "A tulasi manicure for clean, fresh, comfortable hands with a cooling herbal touch.",
         icon: "LeafyGreen",

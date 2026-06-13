@@ -11,6 +11,7 @@ export interface Service {
   tagline: string;
   description: string;
   icon: string;
+  image?: string;
   duration?: string;
   steps: ServiceStep[];
 }
@@ -184,6 +185,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A traditional Tamil herbal facial built around Avaram Poo, a golden flower treasured for cooling, brightening, and balancing tired skin.",
         icon: "Sun",
+        image: "/assets/aavaram-poo.png",
         duration: "60 min",
         steps: sevenStepFacial(
           "Avaram Poo",
@@ -197,6 +199,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A papain-rich facial for dull, uneven skin. Papaya enzymes gently loosen dead cells while the ritual leaves skin smoother and brighter.",
         icon: "Citrus",
+        image: "/assets/papaya.png",
         duration: "60 min",
         steps: sevenStepFacial(
           "Papaya",
@@ -210,6 +213,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A vitamin-rich banana facial using ripe Kavery Delta bananas — natural potassium and moisture-binding enzymes soften, hydrate, and illuminate tired skin.",
         icon: "Banana",
+        image: "/assets/banana.png",
         duration: "60 min",
         steps: sevenStepFacial(
           "Banana",
@@ -223,6 +227,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A purifying facial with neem and tulasi for skin that feels congested, oily, or stressed. Cooling herbs help calm and clarify without harshness.",
         icon: "LeafyGreen",
+        image: "/assets/Neem-Tulasi.png",
         duration: "60 min",
         steps: sevenStepFacial(
           "Neem and Tulasi",
@@ -236,6 +241,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A bright, antioxidant facial with fruit extracts that revive dull skin and bring a naturally fresh salon glow.",
         icon: "Grape",
+        image: "/assets/multi-fruits.png",
         duration: "60 min",
         steps: sevenStepFacial(
           "multi fruit botanicals",
@@ -249,6 +255,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A premium saffron ritual for luminous skin, layering ten treatments from cleansing milk to serum for a refined golden finish.",
         icon: "Gem",
+        image: "/assets/saffron.png",
         duration: "90 min",
         steps: tenStepFacial(
           "saffron",
@@ -262,6 +269,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A Sangu Poo flower ritual inspired by Tamil herbal care, designed to calm visible stress while giving skin a soft, hydrated glow.",
         icon: "Flower",
+        image: "/assets/sangu-poo.png",
         duration: "90 min",
         steps: tenStepFacial(
           "Sangu Poo",
@@ -281,6 +289,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A deeply nourishing body massage using flax seed oil for dry skin, fatigue, and a soft healthy glow.",
         icon: "Leaf",
+        image: "/assets/flax-seed.png",
         duration: "60 min",
         steps: massageRitual(
           "flax seed oil",
@@ -294,6 +303,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A moringa oil massage for skin and scalp nourishment, bringing the richness of the miracle tree into a calming ritual.",
         icon: "TreePine",
+        image: "/assets/moringa-seed.png",
         duration: "60 min",
         steps: massageRitual(
           "moringa oil",
@@ -307,6 +317,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A traditional warm coconut oil massage for deep comfort, softness, and classic Tamil herbal care.",
         icon: "Droplets",
+        image: "/assets/coconut.png",
         duration: "60 min",
         steps: massageRitual(
           "coconut oil",
@@ -320,6 +331,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A cooling Citrullus, also called Kumatikai, oil massage for skin that needs light hydration and summer comfort.",
         icon: "Citrus",
+        image: "/assets/citrullus(Kumatikai).png",
         duration: "60 min",
         steps: massageRitual(
           "Citrullus (Kumatikai) oil",
@@ -378,6 +390,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A banana leaf pedicure for tired feet, dry heels, and a fresh botanical salon finish.",
         icon: "Footprints",
+        image: "/assets/banana-leaf.png",
         duration: "50 min",
         steps: nailRitual("banana leaf", "feet"),
       },
@@ -388,6 +401,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A tulasi pedicure that refreshes, cleanses, and comforts feet with a cooling herbal finish.",
         icon: "LeafyGreen",
+        image: "/assets/tulasi.png",
         duration: "50 min",
         steps: nailRitual("tulasi", "feet"),
       },
@@ -404,6 +418,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A banana leaf manicure for soft hands, neat nails, and a naturally polished finish.",
         icon: "Banana",
+        image: "/assets/banana-leaf.png",
         duration: "40 min",
         steps: nailRitual("banana leaf", "hands"),
       },
@@ -414,6 +429,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A tulasi manicure for clean, fresh, comfortable hands with a cooling herbal touch.",
         icon: "LeafyGreen",
+        image: "/assets/tulasi.png",
         duration: "40 min",
         steps: nailRitual("tulasi", "hands"),
       },

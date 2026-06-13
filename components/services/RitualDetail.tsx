@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useMemo, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -15,19 +15,16 @@ import FloatingLeaves from "@/components/ui/FloatingLeaves";
 import GoldDivider from "@/components/ui/GoldDivider";
 import { getServiceIcon } from "@/lib/service-icons";
 
-const VIEWBOX_WIDTH = 100;
-const ROW_HEIGHT = 100;
-const PATH_CENTER_X = VIEWBOX_WIDTH / 2;
-const LEFT_CARD_ANCHOR_X = 46;
-const RIGHT_CARD_ANCHOR_X = 54;
-const PATH_CORRIDOR_SWAY = 5;
 const DOT_SPACING_PX = 11;
 
 type TrailDot = { x: number; y: number; progress: number };
+type Connector = { d: string };
 
 function samplePathDots(
   path: SVGPathElement,
-  container: HTMLElement
+  container: HTMLElement,
+  progressFrom: number,
+  progressTo: number
 ): TrailDot[] {
   const svg = path.ownerSVGElement;
   const ctm = path.getScreenCTM();
@@ -39,10 +36,10 @@ function samplePathDots(
   const containerRect = container.getBoundingClientRect();
   const dots: TrailDot[] = [];
 
-  const toPercent = (screenX: number, screenY: number, progress: number) => ({
+  const toPercent = (screenX: number, screenY: number, local: number) => ({
     x: ((screenX - containerRect.left) / containerRect.width) * 100,
     y: ((screenY - containerRect.top) / containerRect.height) * 100,
-    progress,
+    progress: progressFrom + (progressTo - progressFrom) * local,
   });
 
   const toScreen = (distance: number) => {
@@ -82,35 +79,19 @@ function samplePathDots(
   return dots;
 }
 
-function checkpointY(index: number): number {
-  return ROW_HEIGHT * index + ROW_HEIGHT / 2;
+// Build one connector that leaves the bottom edge of the current card and
+// arrives at the top edge of the next card, staying entirely in the gap
+// between the two boxes (so it never runs underneath a card).
+function buildConnector(
+  fromX: number,
+  fromY: number,
+  toX: number,
+  toY: number
+): string {
+  const cy1 = fromY + (toY - fromY) * 0.5;
+  const cy2 = toY - (toY - fromY) * 0.5;
+  return `M ${fromX} ${fromY} C ${fromX} ${cy1}, ${toX} ${cy2}, ${toX} ${toY}`;
 }
-
-function checkpointX(index: number): number {
-  return index % 2 === 0 ? LEFT_CARD_ANCHOR_X : RIGHT_CARD_ANCHOR_X;
-}
-
-function buildCurvedPath(stepCount: number): string {
-  if (stepCount <= 0) return "";
-  if (stepCount === 1) return `M ${checkpointX(0)} ${checkpointY(0)}`;
-
-  let path = `M ${checkpointX(0)} ${checkpointY(0)}`;
-
-  for (let i = 0; i < stepCount - 1; i++) {
-    const y0 = checkpointY(i);
-    const y1 = checkpointY(i + 1);
-    const controlOut =
-      PATH_CENTER_X + (i % 2 === 0 ? PATH_CORRIDOR_SWAY : -PATH_CORRIDOR_SWAY);
-    const controlIn =
-      PATH_CENTER_X + (i % 2 === 0 ? -PATH_CORRIDOR_SWAY : PATH_CORRIDOR_SWAY);
-    path += ` C ${controlOut} ${y0 + ROW_HEIGHT * 0.38}, ${controlIn} ${
-      y1 - ROW_HEIGHT * 0.38
-    }, ${checkpointX(i + 1)} ${y1}`;
-  }
-
-  return path;
-}
-
 function RitualTimeline({
   steps,
   scrollYProgress,
@@ -119,36 +100,96 @@ function RitualTimeline({
   scrollYProgress: MotionValue<number>;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<SVGPathElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
+  const connectorRefs = useRef<(SVGPathElement | null)[]>([]);
+  const [connectors, setConnectors] = useState<Connector[]>([]);
+  const [svgSize, setSvgSize] = useState({ width: 0, height: 0 });
   const [trailDots, setTrailDots] = useState<TrailDot[]>([]);
   const [revealed, setRevealed] = useState(1);
   const [progress, setProgress] = useState(0);
 
   const stepCount = steps.length;
-  const pathD = useMemo(() => buildCurvedPath(stepCount), [stepCount]);
-  const viewBoxHeight = stepCount * ROW_HEIGHT;
+  const connectorCount = Math.max(1, stepCount - 1);
 
+  // Phase 1: measure real card positions and build one connector per gap.
   useLayoutEffect(() => {
     const measure = () => {
-      const path = trackRef.current;
       const container = containerRef.current;
-      if (!path || !container) return;
-      setTrailDots(samplePathDots(path, container));
+      if (!container) return;
+
+      const containerRect = container.getBoundingClientRect();
+      setSvgSize({ width: containerRect.width, height: containerRect.height });
+
+      // How far inset from the card's inner corner the connector attaches,
+      // and how far below/above the edge it starts so the trail never
+      // overlaps the (translucent) card body.
+      const CORNER_INSET = 18;
+      const EDGE_GAP = 14;
+
+      const next: Connector[] = [];
+      for (let i = 0; i < stepCount - 1; i++) {
+        const fromCard = cardRefs.current[i];
+        const toCard = cardRefs.current[i + 1];
+        if (!fromCard || !toCard) continue;
+
+        const fromRect = fromCard.getBoundingClientRect();
+        const toRect = toCard.getBoundingClientRect();
+
+        const fromIsLeft = i % 2 === 0;
+        const toIsLeft = (i + 1) % 2 === 0;
+
+        // Attach to each card's inner corner (the side facing the centre).
+        const fromX =
+          (fromIsLeft ? fromRect.right - CORNER_INSET : fromRect.left + CORNER_INSET) -
+          containerRect.left;
+        const fromY = fromRect.bottom - containerRect.top + EDGE_GAP;
+
+        const toX =
+          (toIsLeft ? toRect.right - CORNER_INSET : toRect.left + CORNER_INSET) -
+          containerRect.left;
+        const toY = toRect.top - containerRect.top - EDGE_GAP;
+
+        next.push({ d: buildConnector(fromX, fromY, toX, toY) });
+      }
+      setConnectors(next);
     };
 
     measure();
     window.addEventListener("resize", measure);
 
+    // Remeasure whenever the container OR any card changes size, so the
+    // connectors follow cards as they expand/collapse on scroll.
     const observer = new ResizeObserver(measure);
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    if (containerRef.current) observer.observe(containerRef.current);
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
 
     return () => {
       window.removeEventListener("resize", measure);
       observer.disconnect();
     };
-  }, [pathD]);
+  }, [stepCount]);
+
+  // Phase 2: once connector paths are rendered, sample dots along each one,
+  // mapping every dot into its slice of the overall scroll progress.
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    if (!container || connectors.length === 0) {
+      setTrailDots([]);
+      return;
+    }
+
+    const dots: TrailDot[] = [];
+    connectors.forEach((_, i) => {
+      const path = connectorRefs.current[i];
+      if (!path) return;
+      const from = i / connectorCount;
+      const to = (i + 1) / connectorCount;
+      dots.push(...samplePathDots(path, container, from, to));
+    });
+    setTrailDots(dots);
+  }, [connectors, connectorCount, svgSize.width, svgSize.height]);
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     const easedProgress = Math.min(1, value * 1.12);
@@ -170,11 +211,25 @@ function RitualTimeline({
     >
       <svg
         className="pointer-events-none absolute inset-0 h-full w-full"
-        viewBox={`0 0 ${VIEWBOX_WIDTH} ${viewBoxHeight}`}
+        viewBox={`0 0 ${svgSize.width || 1} ${svgSize.height || 1}`}
         preserveAspectRatio="none"
         aria-hidden
       >
-        <path ref={trackRef} d={pathD} fill="none" stroke="transparent" />
+        {connectors.map((connector, i) => (
+          <path
+            key={i}
+            ref={(el) => {
+              connectorRefs.current[i] = el;
+            }}
+            d={connector.d}
+            fill="none"
+            stroke="#2e5b38"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="1 7"
+            opacity="0.3"
+          />
+        ))}
       </svg>
 
       <div className="pointer-events-none absolute inset-0 z-[5]" aria-hidden>
@@ -188,8 +243,8 @@ function RitualTimeline({
               style={{
                 left: `${dot.x}%`,
                 top: `${dot.y}%`,
-                width: 3,
-                height: 3,
+                width: 5,
+                height: 5,
                 transform: "translate(-50%, -50%)",
               }}
               initial={false}
@@ -226,6 +281,9 @@ function RitualTimeline({
               isReached={isReached}
               isCurrent={isCurrent}
               segmentProgress={segmentProgress}
+              cardRef={(el) => {
+                cardRefs.current[index] = el;
+              }}
             />
           );
         })}
@@ -241,6 +299,7 @@ function RitualCheckpoint({
   isReached,
   isCurrent,
   segmentProgress,
+  cardRef,
 }: {
   step: ServiceStep;
   index: number;
@@ -248,33 +307,28 @@ function RitualCheckpoint({
   isReached: boolean;
   isCurrent: boolean;
   segmentProgress: number;
+  cardRef: (el: HTMLElement | null) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { margin: "-25% 0px -25% 0px" });
   const isActive = isReached && (isInView || isCurrent);
-  const slideFrom = isLeft ? -40 : 40;
 
   return (
     <div
       ref={ref}
-      className={`flex min-h-[13rem] items-center py-4 sm:min-h-[15rem] sm:py-5 ${
+      className={`flex min-h-[17rem] items-center py-8 sm:min-h-[20rem] sm:py-10 ${
         isLeft ? "justify-start" : "justify-end"
       }`}
     >
       <motion.article
+        ref={cardRef}
         initial={false}
-        animate={{
-          opacity: isActive ? 1 : isReached ? 0.55 : 0.28,
-          x: isActive ? 0 : slideFrom * 0.5,
-          y: isActive ? 0 : 18,
-        }}
-        transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
-        className={`relative w-[88%] rounded-2xl border p-5 sm:w-[46%] sm:p-6 ${
-          isCurrent
+        animate={{ opacity: isActive ? 1 : 0.45 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+        className={`relative w-[88%] rounded-2xl border p-5 transition-colors duration-500 sm:w-[38%] sm:p-6 ${
+          isActive
             ? "border-gold/45 bg-gold/10 shadow-xl shadow-gold/10"
-            : isReached
-              ? "border-gold/25 bg-canopy/55"
-              : "border-gold/10 bg-canopy/30"
+            : "border-gold/15 bg-canopy/40"
         }`}
       >
         <div className="flex items-start gap-3">
@@ -297,15 +351,7 @@ function RitualCheckpoint({
           </div>
         </div>
 
-        <motion.div
-          initial={false}
-          animate={{
-            opacity: isActive ? 1 : 0,
-            height: isActive ? "auto" : 0,
-          }}
-          transition={{ duration: 0.5, delay: isActive ? 0.08 : 0 }}
-          className="overflow-hidden"
-        >
+        <div>
           <p className="mt-3 text-sm leading-relaxed text-cream/65">
             {step.description}
           </p>
@@ -314,7 +360,7 @@ function RitualCheckpoint({
               Benefit: {step.benefit}
             </p>
           )}
-        </motion.div>
+        </div>
 
         <motion.div
           className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-gold to-goldLight"

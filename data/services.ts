@@ -345,6 +345,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A focused scalp massage using herbal hair growth oil to nourish roots and relax the head.",
         icon: "Sprout",
+        image: "/assets/hair-growth-oil.png",
         duration: "45 min",
         steps: massageRitual(
           "hair growth oil",
@@ -358,6 +359,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A stronger black oil massage for body heaviness, stiffness, and deep relaxation.",
         icon: "Flame",
+        image: "/assets/bhringraj.png",
         duration: "75 min",
         steps: massageRitual(
           "black oil",
@@ -371,6 +373,7 @@ export const serviceCategories: ServiceCategory[] = [
         description:
           "A fully organic leaf-based body massage oil ritual for gentle nourishment and natural freshness.",
         icon: "LeafyGreen",
+        image: "/assets/multi-leaf.png",
         duration: "60 min",
         steps: massageRitual(
           "fully organic leaf body massage oil",

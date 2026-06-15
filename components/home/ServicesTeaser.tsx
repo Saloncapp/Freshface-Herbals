@@ -29,9 +29,9 @@ const categories = [
   },
   {
     icon: Footprints,
-    title: "Pedicure",
+    title: "Hand & Foot Care",
     description:
-      "Herbal foot rituals using native ingredients, perfected for salons",
+      "Herbal manicure and pedicure rituals using native ingredients, perfected for salons",
     href: "/services",
   },
 ];

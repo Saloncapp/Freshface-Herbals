@@ -5,7 +5,7 @@ const serviceLinks = [
   { href: "/services", label: "Facial Treatments" },
   { href: "/services", label: "Massage Therapy" },
   { href: "/services", label: "Hair Color" },
-  { href: "/services", label: "Pedicure" },
+  { href: "/services", label: "Hand & Foot Care" },
 ];
 
 export default function Footer() {

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import RitualDetail from "@/components/services/RitualDetail";
-import { serviceCategories } from "@/data/services";
+import { serviceCategories, getCategoryServices } from "@/data/services";
 
-const services = serviceCategories.flatMap((category) => category.services);
+const services = serviceCategories.flatMap(getCategoryServices);
 const serviceEntries = serviceCategories.flatMap((category) =>
-  category.services.map((service) => ({
+  getCategoryServices(category).map((service) => ({
     service,
     categoryLabel: category.label,
   }))

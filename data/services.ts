@@ -187,6 +187,109 @@ const nailRitual = (ingredient: string, area: "feet" | "hands"): ServiceStep[] =
   },
 ];
 
+const detanRitual = (
+  ingredient: string,
+  area: string,
+  benefit: string
+): ServiceStep[] => [
+  {
+    title: "Herbal Cleanse",
+    description: `A gentle botanical cleanse clears dust, oil, and surface buildup from the ${area}.`,
+    benefit: "Prepares skin for detan without stripping natural moisture.",
+    animation: "cleanse",
+  },
+  {
+    title: "Herbal Polish",
+    description: `A fine ${ingredient} scrub polishes dull, tanned surface cells on the ${area}.`,
+    benefit: "Smooths rough texture and helps lift visible tan from the skin.",
+    animation: "scrub",
+  },
+  {
+    title: "Detan Pack",
+    description: `A cooling ${ingredient} detan pack rests on the ${area} to target tan and uneven tone.`,
+    benefit,
+    animation: "pack",
+  },
+  {
+    title: "Cooling Finish",
+    description: `A soothing herbal finish calms the ${area} and seals in freshness after detan.`,
+    benefit: "Leaves skin brighter, cooler, and visibly refreshed.",
+    animation: "gel",
+  },
+];
+
+const peelMaskRitual = (
+  ingredient: string,
+  benefit: string
+): ServiceStep[] => [
+  {
+    title: "Cleanse",
+    description: `A soft herbal cleanse prepares the face for the ${ingredient} peel-off mask.`,
+    benefit: "Clears surface oil and dust for even mask adhesion.",
+    animation: "cleanse",
+  },
+  {
+    title: "Mask Application",
+    description: `A smooth layer of ${ingredient} peel-off mask is brushed evenly across the face.`,
+    benefit: "Covers pores and fine lines for a refined salon finish.",
+    animation: "pack",
+  },
+  {
+    title: "Setting Time",
+    description: "The mask is left to set until it forms a flexible film on the skin.",
+    benefit: "Allows actives to work while the mask binds to surface impurities.",
+    animation: "powder",
+  },
+  {
+    title: "Peel-Off Finish",
+    description: `The dried ${ingredient} mask is lifted away in one gentle motion.`,
+    benefit,
+    animation: "peel",
+  },
+  {
+    title: "Toner",
+    description: "A botanical toner balances the skin after peeling and restores comfort.",
+    benefit: "Refines pores and leaves the face fresh and calm.",
+    animation: "tone",
+  },
+];
+
+const hairColorRitual = (
+  ingredient: string,
+  benefit: string
+): ServiceStep[] => [
+  {
+    title: "Consultation",
+    description: `Hair and scalp are assessed to tailor the ${ingredient} mix, coverage, and timing.`,
+    benefit: "Ensures the color result matches hair type and desired shade.",
+    animation: "tone",
+  },
+  {
+    title: "Herbal Mix",
+    description: `Fresh ${ingredient} is blended into a smooth, salon-ready coloring paste.`,
+    benefit: "Delivers pure botanical color without harsh chemical additives.",
+    animation: "powder",
+  },
+  {
+    title: "Application",
+    description: "The herbal paste is sectioned and applied from roots to tips with even coverage.",
+    benefit: "Supports uniform color deposit and natural-looking results.",
+    animation: "pack",
+  },
+  {
+    title: "Resting Time",
+    description: "The color is left to develop while the herbs nourish the hair and scalp.",
+    benefit,
+    animation: "gel",
+  },
+  {
+    title: "Rinse & Care Finish",
+    description: "A gentle herbal rinse removes paste residue and a light conditioning finish is applied.",
+    benefit: "Leaves hair soft, shiny, and naturally colored with lasting herbal care.",
+    animation: "cleanse",
+  },
+];
+
 export const serviceCategories: ServiceCategory[] = [
   {
     id: "facial",
@@ -301,6 +404,90 @@ export const serviceCategories: ServiceCategory[] = [
             ),
           },
         ],
+      },
+    ],
+  },
+  {
+    id: "detan",
+    label: "Detan",
+    services: [
+      {
+        id: "sandalwood-peppermint-detan",
+        name: "Sandalwood & Peppermint Detan",
+        tagline: "Cooling tan removal for face and neck",
+        description:
+          "A sandalwood and peppermint detan ritual for the face and neck — cooling sun-stressed skin while gently lifting tan and restoring a brighter, even tone.",
+        icon: "Sun",
+        duration: "45 min",
+        steps: detanRitual(
+          "sandalwood and peppermint",
+          "face and neck",
+          "Cools heated skin, softens tan, and leaves a fresh herbal glow."
+        ),
+      },
+    ],
+  },
+  {
+    id: "peel-off-mask",
+    label: "Peel-Off Mask",
+    services: [
+      {
+        id: "cardamom-peel-off-mask",
+        name: "Cardamom Peel-Off Mask",
+        tagline: "Aromatic pore-refining peel",
+        description:
+          "A warming cardamom peel-off mask that lifts surface impurities, refines pores, and leaves skin with a smooth, salon-polished finish.",
+        icon: "Sparkle",
+        duration: "35 min",
+        steps: peelMaskRitual(
+          "cardamom",
+          "Refines pores, lifts dullness, and leaves skin visibly smoother."
+        ),
+      },
+      {
+        id: "activated-charcoal-peel-off-mask",
+        name: "Activated Charcoal Peel-Off Mask",
+        tagline: "Deep cleanse for congested skin",
+        description:
+          "An activated charcoal peel-off mask for skin that feels oily or congested — the mask binds to surface buildup and peels away for a cleaner, fresher look.",
+        icon: "LeafyGreen",
+        duration: "35 min",
+        steps: peelMaskRitual(
+          "activated charcoal",
+          "Draws out surface impurities and leaves skin feeling deeply cleansed."
+        ),
+      },
+    ],
+  },
+  {
+    id: "hair-color",
+    label: "Hair Color",
+    services: [
+      {
+        id: "organic-henna-indigo-mix",
+        name: "Organic Pure Henna & Indigo Mix Hair Color",
+        tagline: "Chemical-free natural coloring",
+        description:
+          "A pure organic henna and indigo blend for rich, natural hair color — no chemicals, only what our soil provides for lasting herbal shade.",
+        icon: "Palette",
+        duration: "120 min",
+        steps: hairColorRitual(
+          "organic henna and indigo",
+          "Delivers rich natural color while nourishing hair and scalp with herbal care."
+        ),
+      },
+      {
+        id: "natural-henna-aloe-gel-coloring",
+        name: "Natural Henna Aloe Gel Coloring",
+        tagline: "Gentle color with aloe hydration",
+        description:
+          "A soothing henna aloe gel coloring treatment that tints hair naturally while aloe keeps the scalp calm and strands soft throughout the process.",
+        icon: "Paintbrush",
+        duration: "75 min",
+        steps: hairColorRitual(
+          "henna aloe gel",
+          "Colors hair gently while aloe soothes the scalp and adds moisture."
+        ),
       },
     ],
   },

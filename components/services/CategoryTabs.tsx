@@ -88,14 +88,14 @@ export default function CategoryTabs() {
         <Tabs.Root
           value={activeSubTab}
           onValueChange={handleSubTabChange}
-          className="mt-8"
+          className="mt-8 flex justify-center"
         >
-          <Tabs.List className="flex flex-wrap justify-center gap-2">
+          <Tabs.List className="inline-flex flex-wrap justify-center gap-1 rounded-lg border border-gold/20 bg-canopy/50 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
             {activeCategory.subCategories.map((subCategory: ServiceSubCategory) => (
               <Tabs.Trigger
                 key={subCategory.id}
                 value={subCategory.id}
-                className="rounded-full border border-gold/15 px-5 py-2 text-xs font-medium uppercase tracking-wider text-cream/50 transition-all data-[state=active]:border-gold/40 data-[state=active]:bg-gold/10 data-[state=active]:text-gold hover:text-gold"
+                className="rounded-md px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-cream/45 transition-all duration-300 hover:text-cream/75 data-[state=active]:bg-gold data-[state=active]:text-deep data-[state=active]:shadow-[0_2px_16px_rgba(201,168,76,0.28)]"
               >
                 {subCategory.label}
               </Tabs.Trigger>

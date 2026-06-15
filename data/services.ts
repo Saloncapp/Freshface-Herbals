@@ -507,7 +507,7 @@ export const serviceCategories: ServiceCategory[] = [
           {
             id: "flax-seed-massage",
             name: "Flax Seed Oil Massage",
-            tagline: "Omega moisture for dry skin comfort",
+            tagline: "Deep moisturizing",
             description:
               "A deeply nourishing body massage using flax seed oil for dry skin, fatigue, and a soft healthy glow.",
             icon: "Leaf",
@@ -521,7 +521,7 @@ export const serviceCategories: ServiceCategory[] = [
           {
             id: "moringa-massage",
             name: "Moringa Oil Massage",
-            tagline: "Nourishes skin, scalp, and tired muscles",
+            tagline: "Antimicrobial",
             description:
               "A moringa oil massage for skin and scalp nourishment, bringing the richness of the miracle tree into a calming ritual.",
             icon: "TreePine",
@@ -535,7 +535,7 @@ export const serviceCategories: ServiceCategory[] = [
           {
             id: "citrullus-kumatikai-oil-massage",
             name: "Citrullus (Kumatikai) Oil Massage",
-            tagline: "Cooling lightweight hydration",
+            tagline: "Antioxidant",
             description:
               "A cooling Citrullus, also called Kumatikai, oil massage for skin that needs light hydration and summer comfort.",
             icon: "Citrus",

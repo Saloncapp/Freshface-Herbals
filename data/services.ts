@@ -419,6 +419,7 @@ export const serviceCategories: ServiceCategory[] = [
           "A sandalwood and peppermint detan ritual for the face and neck — cooling sun-stressed skin while gently lifting tan and restoring a brighter, even tone.",
         icon: "Sun",
         duration: "45 min",
+        image: "/assets/sandalwood-peppermint-detan.png",
         steps: detanRitual(
           "sandalwood and peppermint",
           "face and neck",
@@ -439,6 +440,7 @@ export const serviceCategories: ServiceCategory[] = [
           "A warming cardamom peel-off mask that lifts surface impurities, refines pores, and leaves skin with a smooth, salon-polished finish.",
         icon: "Sparkle",
         duration: "35 min",
+        image: "/assets/cardamom.png",
         steps: peelMaskRitual(
           "cardamom",
           "Refines pores, lifts dullness, and leaves skin visibly smoother."
@@ -452,6 +454,7 @@ export const serviceCategories: ServiceCategory[] = [
           "An activated charcoal peel-off mask for skin that feels oily or congested — the mask binds to surface buildup and peels away for a cleaner, fresher look.",
         icon: "LeafyGreen",
         duration: "35 min",
+        image: "/assets/charcoal.png",
         steps: peelMaskRitual(
           "activated charcoal",
           "Draws out surface impurities and leaves skin feeling deeply cleansed."
@@ -471,6 +474,7 @@ export const serviceCategories: ServiceCategory[] = [
           "A pure organic henna and indigo blend for rich, natural hair color — no chemicals, only what our soil provides for lasting herbal shade.",
         icon: "Palette",
         duration: "120 min",
+        image: "/assets/indigo-aloevera.png",
         steps: hairColorRitual(
           "organic henna and indigo",
           "Delivers rich natural color while nourishing hair and scalp with herbal care."
@@ -484,6 +488,7 @@ export const serviceCategories: ServiceCategory[] = [
           "A soothing henna aloe gel coloring treatment that tints hair naturally while aloe keeps the scalp calm and strands soft throughout the process.",
         icon: "Paintbrush",
         duration: "75 min",
+        image: "/assets/henna-aloe-color.png",
         steps: hairColorRitual(
           "henna aloe gel",
           "Colors hair gently while aloe soothes the scalp and adds moisture."
@@ -525,20 +530,6 @@ export const serviceCategories: ServiceCategory[] = [
             steps: massageRitual(
               "moringa oil",
               "Supports skin vitality, scalp comfort, and a fresh nourished feel."
-            ),
-          },
-          {
-            id: "coconut-massage",
-            name: "Coconut Oil Massage",
-            tagline: "Deep softness and dryness relief",
-            description:
-              "A traditional warm coconut oil massage for deep comfort, softness, and classic Tamil herbal care.",
-            icon: "Droplets",
-            image: "/assets/coconut.png",
-            duration: "60 min",
-            steps: massageRitual(
-              "coconut oil",
-              "Helps soften skin, relax the body, and reduce dryness."
             ),
           },
           {

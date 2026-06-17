@@ -440,7 +440,7 @@ export const serviceCategories: ServiceCategory[] = [
           "A warming cardamom peel-off mask that lifts surface impurities, refines pores, and leaves skin with a smooth, salon-polished finish.",
         icon: "Sparkle",
         duration: "35 min",
-        image: "/assets/cardamom.png",
+        image: "/assets/Cardamom.png",
         steps: peelMaskRitual(
           "cardamom",
           "Refines pores, lifts dullness, and leaves skin visibly smoother."
